@@ -9,7 +9,7 @@
 * Esta clase maneja tanto la entrada como la salida de datos de la tabla recibos.
 *
 * @package S.A.V.G.S.
-* @author Juan <0juankarbajal0@gmail.com>
+* @author Juan <juanmcarbajal95@gmail.com>
 * @version 1.7
 */
 class Recibos extends Model

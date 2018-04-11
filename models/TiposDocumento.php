@@ -7,7 +7,7 @@
 * Esta clase permite obtener mediante sus metodos los Tipos de Documentos.
 *
 * @package S.A.V.G.S.
-* @author Juan <0juankarbajal0@gmail.com>
+* @author Juan <juanmcarbajal95@gmail.com>
 * @version 1.7
 */
 class TiposDocumento extends Model 
