@@ -1,0 +1,232 @@
+<?php 
+
+// models/Clientes.php
+
+/**
+* Clase para manejo de los clientes para para S.A.V.G.S.
+*
+* Esta clase maneja tanto la entrada como la salida de datos de la tabla clientes.
+*
+* @package S.A.V.G.S.
+* @author Matias <matiascabral95@gmail.com>
+* @version 1.7
+*/
+
+class Clientes extends Model 
+{
+	
+	/**
+	* Función que devuelve todos los clientes.
+	*	
+	* @return array retorna un array con los datos de los clientes encontrados.
+	*/
+	
+	public function getTodos()
+	{
+		$q = "SELECT * FROM clientes";
+		
+		$this->db->query($q);
+		return $this->db->fetchAll();
+	}
+	
+	/**
+	* Función que devuelve todos los datos de un cliente en particular.
+	*	
+	* @param integer $codigo un entero con el codigo indentificador de un cliente.
+	* @return array retorna un array con los datos del cliente encontrado.
+	*/
+	
+	public function getClienteCodigo($codigo)
+	{
+		if(!isset($codigo)) throw new Exception("error1");
+		if(!ctype_digit($codigo)) throw new Exception("error2");
+		$q = "SELECT * FROM clientes WHERE codigo_cliente=$codigo";
+		$this->db->query($q);
+		return $this->db->fetch();
+	}
+	
+	/**
+	* Función que devuelve todos los datos de un cliente en particular a partir de 
+	* su numero y tipo de documento.
+	*	
+	* @param integer $nro_doc un entero con el numero de documento de un cliente.
+	* @param integer $tip_doc un entero que indica el tipo de documento de un cliente.
+	* @return array retorna un array con los datos del cliente encontrado.
+	*/
+	
+	public function getClienteDocumento($nro_doc,$tip_doc)
+	{
+		if(!isset($nro_doc)) throw new Exception("error1");
+		if(!ctype_digit($nro_doc)) throw new Exception("error2");
+		if(!isset($tip_doc)) throw new Exception("error1");
+		if(!ctype_digit($tip_doc)) throw new Exception("error2");
+		$q = "SELECT * FROM clientes
+				WHERE codigo_tipo_documento=$tip_doc
+				AND nro_documento_cliente=$nro_doc";
+		$this->db->query($q);
+		return $this->db->fetch();
+	}
+	
+	/**
+	* Función que devuelve todos los datos de un cliente en particular para una venta.
+	*	
+	* @param integer $codigo un entero con el codigo indentificador de un cliente.
+	* @return array retorna un array con los datos del cliente encontrado.
+	*/
+	
+	public function getClienteCodigoVenta($codigo)
+	{
+		if(!isset($codigo)) throw new Exception("error1");
+		if(!ctype_digit($codigo)) throw new Exception("error2");
+		$q = "SELECT
+				nombre_cliente as 'Nombre',
+				nro_documento_cliente as 'Nro Documento',
+				telefono_cliente as 'Telefono',
+				direccion_cliente as 'Direccion',
+				localidad_cliente as 'Localidad',
+				codigo_postal_cliente as 'Codigo Postal',
+				cuil_cliente as 'CUIL'
+			FROM clientes WHERE codigo_cliente=$codigo";
+		$this->db->query($q);
+		return $this->db->fetch();
+	}
+	
+	/**
+	* Función que crea un nuevo cliente a partir de los datos recibidos.
+	*	
+	* @param array $datos array con todos los datos necesarios de un cliente.
+	* @param array $tipos_doc array con todos los datos de los tipos de documentos.
+	* @return array retorna un array con los datos del cliente creado.
+	*/
+	
+	public function crearNuevo($datos, $tipos_doc )
+	{	
+		
+		if(!isset($datos['nombre'])) throw new Exception("error1");
+		if(strlen($datos['nombre'])<2) throw new Exception("error2");
+		if(strlen($datos['nombre'])>50)
+			substr($datos['nombre'],0,50);
+		$datos['nombre']=$this->db->escapeString($datos['nombre']);
+		$nombre=$datos['nombre'];
+		
+		if(!isset($datos['telefono'])) throw new Exception("error3");
+		if(!ctype_digit($datos['telefono'])) throw new Exception("error4");
+		if(strlen($datos['telefono'])<1) throw new Exception("error4.5");
+		if(strlen($datos['telefono'])>20)
+			substr($datos['telefono'],0,20);
+		$telefono=$datos['telefono'];
+		
+		if(!isset($datos['direccion'])) throw new Exception("error5");
+		if(strlen($datos['direccion'])<1) throw new Exception("error6");
+		if(strlen($datos['direccion'])>50)
+			substr($datos['direccion'],0,50);
+		$datos['direccion']=$this->db->escapeString($datos["direccion"]);
+		$direccion=$datos['direccion'];
+		
+		if(!isset($datos['localidad'])) throw new Exception("error8");
+		if(strlen($datos['localidad'])<1) throw new Exception("error9");
+		if(strlen($datos['localidad'])>50)
+			substr($datos['localidad'],0,50);
+		$datos['localidad']=$this->db->escapeString($datos['localidad']);
+		$localidad=$datos['localidad'];
+	
+		if(!isset($datos['codigo-postal'])) throw new Exception("error11");
+		if(!ctype_digit($datos['codigo-postal'])) throw new Exception("error11.5");
+		if(strlen($datos['codigo-postal'])<1) throw new Exception("error12");
+		if(strlen($datos['codigo-postal'])>10)
+			substr($datos['codigo-postal'],0,10);
+		$codigoPostal=$datos['codigo-postal'];
+		
+		if(!isset($datos['tipo-documento'])) throw new Exception("error13");
+		if(!ctype_digit($datos['tipo-documento'])) throw new Exception("error13.5");
+		if(!$tipos_doc->existe($datos['tipo-documento'])) throw new Exception("error13.55");
+		$tipodocumento=$datos['tipo-documento'];
+
+		
+		if(!isset($datos['nro-documento'])) throw new Exception("error14");
+		if(!ctype_digit($datos['nro-documento'])) throw new Exception("error15");
+		if(strlen($datos['nro-documento'])<1) throw new Exception("error15.5");
+		if(strlen($datos['nro-documento'])>20)
+			substr($datos['nro-documento'],0,20);
+		$nroDocumento=$datos['nro-documento'];
+		
+		if(!isset($datos['cuil'])) throw new Exception("error16");
+		if(strlen($datos['cuil'])<1) throw new Exception("error17");
+		if(strlen($datos['cuil'])>15)
+			substr($datos['cuil'],0,15);
+		$datos['cuil']=$this->db->escapeString($datos['cuil']);
+		$cuil=$datos['cuil'];
+		
+		if(!isset($datos['sexo'])) throw new Exception("error16");
+		if(strlen($datos['sexo'])<1) throw new Exception("error17");
+		if(strlen($datos['sexo'])>2)
+			substr($datos['sexo'],0,2);
+		$datos['sexo']=$this->db->escapeString($datos['sexo']);
+		$sexo=$datos['sexo'];
+
+		
+		
+		$q = "INSERT INTO clientes (nombre_cliente, telefono_cliente, direccion_cliente, localidad_cliente, codigo_postal_cliente, nro_documento_cliente, codigo_tipo_documento, cuil_cliente, sexo_cliente)
+		          VALUES ('$nombre','$telefono','$direccion','$localidad','$codigoPostal','$nroDocumento',$tipodocumento,'$cuil','$sexo')";
+		
+		$this->db->query($q);
+	}
+	
+	/**
+	* Función que indica si existe o no un cliente en particular.
+	*	
+	* @param integer $nro un entero con el numero de documento de un cliente.
+	* @param integer $tipo un entero que indica el tipo de documento de un cliente.
+	* @param integer $cuil un entero con el cuil de un cliente.
+	* @param integer $codigo un entero con el codigo indentificador de un cliente
+	* en la base de datos, en caso de ser 0 este debe ser omitido en la consulta.
+	* @return bool retorna un boolean que indica si existe o no el cliente.
+	*/
+	
+		public function existe($nro,$tipo,$cuil,$codigo)
+	{
+		if(!ctype_digit($nro)) throw new Exception("error1");
+		if(strlen($nro)<2) throw new Exception("error2");
+		if(strlen($nro)>10)
+			$nro=substr($nro,0,10);
+		
+		if(!ctype_digit($cuil)) throw new Exception("error3");
+		if(strlen($cuil)<2) throw new Exception("error4");
+		if(strlen($cuil)>11)
+			$cuil=substr($cuil,0,11);
+		
+		if(!ctype_digit($tipo)) throw new Exception("error5");
+		if(strlen($tipo)!=1) throw new Exception("error6");
+		
+		if(!ctype_digit($codigo)) throw new Exception("error7");
+				
+		$q = "SELECT * FROM clientes WHERE (( nro_documento_cliente = '$nro' AND  codigo_tipo_documento = $tipo ) OR cuil_cliente = $cuil )";
+		
+		if($codigo!=0)
+			$q = $q." AND codigo_cliente <> $codigo";
+		
+		$this->db->query($q);
+		if($this->db->numRows()!=0)
+			return true;
+		return false;
+	}
+	
+	/**
+	* Función que devuelve el codigo identificador del ultimo cliente ingresado.
+	*	
+	* @return integer retorna un entero que es el codigo identificador del cliente encontrado.
+	*/
+	
+	public function getUltimoCliente()
+	{
+		$q = "SELECT codigo_cliente FROM clientes
+				ORDER BY codigo_cliente DESC
+				LIMIT 1;";
+		$this->db->query($q);
+		$aux = $this->db->fetch();
+		$aux=$aux['codigo_cliente'];
+		return $aux;
+	}
+}
+
+?>

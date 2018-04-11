@@ -1,0 +1,266 @@
+@media (max-width: 1000px){
+.h1300px{
+	display:none;
+}
+.h1000px{
+	display:none;
+}
+.navi{
+	min-height:55px;
+	
+}
+}
+@media (max-width: 1300px){
+.h1000px{
+	display:none;
+}
+}
+	
+@media (max-height: 720px){
+#wrapper {
+	min-height:450px;			
+}
+}
+
+@media (max-height: 600px){
+#wrapper {
+	min-height:360px;			
+}
+}
+
+@media (max-height: 1080px) {
+#wrapper {
+	min-height:620px;			
+}
+}
+table.table.w_600px{
+	width:600px;
+	margin:auto;
+}
+
+.img_boton{
+	height:26px;
+}
+
+#wrapper {
+	padding-top:20px;
+	padding-bottom:10px;
+	background-color:white;
+	text-align:center;
+	width:80%;
+	height:auto;
+	margin:auto;
+	overflow:auto;
+	text-content:center;				
+}
+
+
+.max-99{
+	max-width:99%;
+	margin:auto;
+}
+#wrapper .row {
+ margin-right: 0; 
+ margin-left: 0; 
+}
+.form-inline{
+	margin-top:10px;
+}
+#titleHeader{
+	color: #111; font-family: 'Open Sans Condensed', sans-serif; 
+	font-size: 50px; 
+	font-weight: 700; 
+	line-height: 50px; 
+	margin: 0; 
+	text-align: center; 
+}
+#form>table, #form>.control-group.input-append>table{
+	margin:auto;
+}
+#backhead{		
+	text-align:center;	
+}
+#backhead h1{	
+	width:50%;	
+	margin-top:30px;
+	float:right;
+	margin-right:25%;
+	color:black;	
+	text-align:center;
+}
+#backhead{
+	overflow:auto;
+	color:#FFF;
+	background-color:#36F;
+	margin:0;
+	padding:0;
+	height:100px;
+	}
+#backhead img{		
+	margin-top:10px;
+	float:left;
+	background-color:#36f;
+	height:80px;
+	margin-left:15px;
+}
+.bienvenido{
+	padding-top:140px;
+}
+#backfoot{
+	background-color:#36f;
+	 height:120px;	
+}
+#backfoot a{
+	text-decoration:none;
+	text-decoration:underline;	
+	
+	color:#000;
+}
+#backfoot div{
+	padding-top:20px;
+	padding-bottom:10px;
+	padding-left:30px;
+}
+#backfoot div p{
+	text-align:left;
+}
+.form-control{
+	margin:auto;
+	margin-top:2px;
+	margin-left:2px;
+}
+#num_doc{
+	width:200px;
+	margin:10px auto;
+	margin-bottom:3px;
+	display:block;
+}	
+.boton{				
+	border:3px solid #9CF;
+	background-color:#9CF;
+	border-radius: 5px;
+	color:black;
+	font-weight:bold;
+}
+.boton:hover{
+	background-color:white;
+	color:#39F;
+}
+#wrapper2{
+	height:auto;
+	//width:300px;
+	margin:auto;
+}
+nav{
+	width:100%;
+	background-color:#39F;
+	margin:auto;
+}
+#wrappernav{
+	width:80%;
+	margin:auto;
+}
+#navlist{
+	margin:0;
+	padding:0;
+	background-color:#39F;
+	list-style: none;
+	overflow:auto;
+}
+#navlist a{
+	display:block;
+	text-decoration:none;
+	text-align:center;
+	font-size:15px;
+	padding:5px 7px;
+	background-color:#39F;
+	font-weight:bold;
+	color:white;
+	border:1px solid;
+	border-color:#39F;
+	-webkit-transition:background-color 0.5s;
+	height:100%;
+}
+#navlist a:hover{
+	background-color:white;
+	color:#39F;
+}
+#navlist li{
+	float:left;
+	width:20%;
+}
+#form{
+	font-size:13px;
+	display:block;
+	//float:left;
+	text-align:center;
+	width:600px;
+	margin:auto;
+	margin-top:30px;
+}
+.formres{
+	display:block;
+	//float:left;
+	text-align:center;
+	width:250px;
+	margin:auto;
+	margin-top:30px;
+}
+table{
+	margin-top:20px;
+}
+.form-inline .form-control.tel{
+	width:105px;
+}
+
+.form-inline .form-control.cuil{
+	width:135px;
+}
+
+.form-inline .form-control.cp{
+	width:50px;
+}
+
+.form-inline .form-control.fecha{
+	width:120px;
+}
+
+.form-inline .form-control.documento{
+	width:120px;
+}
+
+table{
+	text-align:left;
+}
+th{
+	text-align:center;
+}
+
+.error,.reponer{
+	color:red;
+}
+.form-inline .form-control.precio{
+	width:85px;
+}
+.form-inline .form-control.cantidad{
+	width:70px;
+}
+
+a{
+	display:block;
+}
+body{
+	padding:0;
+	margin:0;
+	font-family:verdana;
+	background-color:#9CF;
+}
+p{
+	margin:0;
+	padding:0;
+}
+h1,h2,h3,h4,h5,h6{
+	padding:0;
+	margin:0;
+	text-align:center;
+}
